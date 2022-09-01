@@ -79,4 +79,5 @@ promise.then(function (response) {
 });
 
 
-console.log(promise)
+console.log(promise);
+console.log("Changes uploaded");
