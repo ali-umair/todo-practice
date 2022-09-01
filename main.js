@@ -31,3 +31,52 @@ function removeButton(newTask) {                  // Function to generate remove
     removeButton.addEventListener('click', () => newTask.remove())  // Removing task on button click
     newTask.appendChild(removeButton);                     // and then appending the button to new task element
 }
+
+
+
+
+// Appwrite
+
+// Init your Web SDK
+// const client = new Appwrite.Client();
+
+// client
+//     .setEndpoint('http://8080-appwrite-integrationfor-9249cbyzfak.ws-eu63.gitpod.io/v1') // Your Appwrite Endpoint
+//     .setProject('630772440a189ac8b9e2') // Your project ID
+// ;
+
+
+// const account = new Appwrite.Account(client);
+
+// // Register User
+// account.create('[USER_ID]', 'me@example.com', 'password', 'Jane Doe')
+//     .then(function (response) {
+//         console.log(response);
+//     }, function (error) {
+//         console.log(error);
+//     });
+
+
+
+// Database
+
+
+
+const client = new Appwrite.Client();
+client
+    .setEndpoint('http://8080-appwrite-integrationfor-9249cbyzfak.ws-eu63.gitpod.io/v1') // Your API Endpoint
+    .setProject('630772440a189ac8b9e2') // Your project ID
+;
+
+const databases = new Appwrite.Databases(client, '631063276e14901377a7');
+
+const promise = databases.createDocument('6310633d3e45b63b59dc', '1', {});
+
+promise.then(function (response) {
+    console.log(response); // Success
+}, function (error) {
+    console.log(error); // Failure
+});
+
+
+console.log(promise)
