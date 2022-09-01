@@ -70,7 +70,7 @@ client
 
 const databases = new Appwrite.Databases(client, '631063276e14901377a7');
 
-const promise = databases.createDocument('6310633d3e45b63b59dc', '1', {});
+const promise = databases.getDocument('6310633d3e45b63b59dc', '6310a73c827d902f1a9f');
 
 promise.then(function (response) {
     console.log(response); // Success
