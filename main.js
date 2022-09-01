@@ -64,7 +64,7 @@ function removeButton(newTask) {                  // Function to generate remove
 
 const client = new Appwrite.Client();
 client
-    .setEndpoint('https://8080-appwrite-integrationfor-9249cbyzfak.ws-eu63.gitpod.io/v1') // Your API Endpoint
+    .setEndpoint('http://8080-appwrite-integrationfor-9249cbyzfak.ws-eu63.gitpod.io/v1') // Your API Endpoint
     .setProject('630772440a189ac8b9e2') // Your project ID
 ;
 
