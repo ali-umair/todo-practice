@@ -1,3 +1,4 @@
+const client = supabase.createClient('https://vhspscomjwkvdtqgpsqd.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZoc3BzY29tandrdmR0cWdwc3FkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjE0NDg3MjUsImV4cCI6MTk3NzAyNDcyNX0.7SbUAet6KDNJCO4ygiUdHj5XHNBLZ0aV7MrX9bmdDkI')
 const submitButton = document.querySelector('#submit');             //
 const tasksContainer = document.querySelector('.tasks-container');  //  Selecting elements from the DOM
 const inputTask = document.querySelector('#add-task');              //
@@ -11,6 +12,7 @@ submitButton.addEventListener('click', () => {
         newTask.textContent = inputTask.value;              // Assigning user created task to created element
         newTask.setAttribute('class', 'task');              // Adding CSS class for styling
         tasksContainer.appendChild(newTask);                // Appending new task element to tasks container
+        // postData(inputTask.value);
         doneButton(newTask);                                // Calling btn generator function
         removeButton(newTask);                              //          //
     }
@@ -28,8 +30,33 @@ function removeButton(newTask) {                  // Function to generate remove
     const removeButton = document.createElement('button'); // new task created,
     removeButton.textContent = "Remove";
     removeButton.setAttribute('class', 'btn-remove');      // Adding CSS class for styling          
-    removeButton.addEventListener('click', () => newTask.remove())  // Removing task on button click
+    removeButton.addEventListener('click', () => {
+        let task = newTask.textContent.replace("DoneRemove", "")
+        deleteData(task);
+        // console.log(task);
+        // newTask.remove()
+    })  // Removing task on button click
     newTask.appendChild(removeButton);                     // and then appending the button to new task element
+}
+
+
+// const postData = async (value) => {
+//     const { data, error } = await client
+//     .from('Todos')
+//     .insert([{ task: value}])
+
+//   console.log(data);
+// //   console.log(error);
+// }
+
+
+const deleteData = async (value) => {
+    const { data, error } = await client
+    .from('Todos')
+    .delete()
+    .match({ task: value })
+
+    console.log(data);
 }
 
 
@@ -87,7 +114,6 @@ function removeButton(newTask) {                  // Function to generate remove
 
 // console.log(Supabase-js);
 
-const client = supabase.createClient('https://vhspscomjwkvdtqgpsqd.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZoc3BzY29tandrdmR0cWdwc3FkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjE0NDg3MjUsImV4cCI6MTk3NzAyNDcyNX0.7SbUAet6KDNJCO4ygiUdHj5XHNBLZ0aV7MrX9bmdDkI')
 
 
 // const { createClient } = supabase
