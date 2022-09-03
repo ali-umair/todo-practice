@@ -12,7 +12,7 @@ submitButton.addEventListener('click', () => {
         newTask.textContent = inputTask.value;              // Assigning user created task to created element
         newTask.setAttribute('class', 'task');              // Adding CSS class for styling
         tasksContainer.appendChild(newTask);                // Appending new task element to tasks container
-        // postData(inputTask.value);
+        postData(inputTask.value);
         doneButton(newTask);                                // Calling btn generator function
         removeButton(newTask);                              //          //
     }
@@ -40,14 +40,14 @@ function removeButton(newTask) {                  // Function to generate remove
 }
 
 
-// const postData = async (value) => {
-//     const { data, error } = await client
-//     .from('Todos')
-//     .insert([{ task: value}])
+const postData = async (value) => {
+    const { data, error } = await client
+    .from('Todos')
+    .insert([{ task: value}])
 
-//   console.log(data);
-// //   console.log(error);
-// }
+  console.log(data);
+//   console.log(error);
+}
 
 
 const deleteData = async (value) => {
