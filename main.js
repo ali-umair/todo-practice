@@ -62,21 +62,80 @@ function removeButton(newTask) {                  // Function to generate remove
 
 
 
-const client = new Appwrite.Client();
-client
-    .setEndpoint('http://8080-appwrite-integrationfor-9249cbyzfak.ws-eu63.gitpod.io/v1') // Your API Endpoint
-    .setProject('630772440a189ac8b9e2') // Your project ID
-;
+// const client = new Appwrite.Client();
+// client
+//     .setEndpoint('http://8080-appwrite-integrationfor-9249cbyzfak.ws-eu63.gitpod.io/v1') // Your API Endpoint
+//     .setProject('630772440a189ac8b9e2') // Your project ID
+// ;
 
-const databases = new Appwrite.Databases(client, '631063276e14901377a7');
+// const databases = new Appwrite.Databases(client, '631063276e14901377a7');
 
-const promise = databases.createDocument('6310633d3e45b63b59dc', '1', {});
+// const promise = databases.getDocument('6310633d3e45b63b59dc', '6310a73c827d902f1a9f');
 
-promise.then(function (response) {
-    console.log(response); // Success
-}, function (error) {
-    console.log(error); // Failure
-});
+// promise.then(function (response) {
+//     console.log(response); // Success
+// }, function (error) {
+//     console.log(error); // Failure
+// });
 
 
-console.log(promise)
+// console.log(promise)
+
+
+
+// Supabase
+
+// console.log(Supabase-js);
+
+const client = supabase.createClient('https://vhspscomjwkvdtqgpsqd.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZoc3BzY29tandrdmR0cWdwc3FkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjE0NDg3MjUsImV4cCI6MTk3NzAyNDcyNX0.7SbUAet6KDNJCO4ygiUdHj5XHNBLZ0aV7MrX9bmdDkI')
+
+
+// const { createClient } = supabase
+// const _supabase = createClient(
+//     'https://vhspscomjwkvdtqgpsqd.supabase.co', 
+//     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZoc3BzY29tandrdmR0cWdwc3FkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjE0NDg3MjUsImV4cCI6MTk3NzAyNDcyNX0.7SbUAet6KDNJCO4ygiUdHj5XHNBLZ0aV7MrX9bmdDkI'
+//     )
+
+// Both of the above method of initiating supabase are correct.
+
+//   console.log('Supabase Instance: ', client)
+
+//   console.log(supabase);
+
+// const getData = async () => {
+//     let { data: items, error } = await client
+//     .from('items')
+//     .select('name')
+
+//     console.log(items);
+  
+// //   console.log(items[0].name);
+// //   console.log(error);
+
+// }
+// const postData = async () => {
+//     const { data, error } = await client
+//     .from('items')
+//     .insert([{ name: 'Item four'}])
+
+//   console.log(data);
+// //   console.log(error);
+// }
+
+// const updateData = async () => {
+//     const { data, error } = await client
+//     .from('items')
+//     .update({ name: 'Fourth item' })
+//     .match({ name: 'Item 4' })
+
+//     console.log(data);
+//     // console.log(error);
+// }
+
+// getData();
+// // postData();
+// updateData();
+// getData();
+
+// console.log(client);
+// Authorization token: sbp_62b85233c90b9dac211d5f27fd239ce5dc93e7fe
