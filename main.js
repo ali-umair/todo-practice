@@ -12,7 +12,6 @@ submitButton.addEventListener('click', () => {
         newTask.textContent = inputTask.value;              // Assigning user created task to created element
         newTask.setAttribute('class', 'task');              // Adding CSS class for styling
         tasksContainer.appendChild(newTask);                // Appending new task element to tasks container
-        postData(inputTask.value);
         doneButton(newTask);                                // Calling btn generator function
         removeButton(newTask);                              //          //
     }
@@ -31,40 +30,15 @@ function removeButton(newTask) {                  // Function to generate remove
     removeButton.textContent = "Remove";
     removeButton.setAttribute('class', 'btn-remove');      // Adding CSS class for styling          
     removeButton.addEventListener('click', () => {
-        let task = newTask.textContent.replace("DoneRemove", "")
-        deleteData(task);
-        // console.log(task);
-        // newTask.remove()
-    })  // Removing task on button click
+        tasksContainer.removeChild(newTask);
+    })                                                      // Removing task on button click
     newTask.appendChild(removeButton);                     // and then appending the button to new task element
-}
-
-
-const postData = async (value) => {
-    const { data, error } = await client
-    .from('Todos')
-    .insert([{ task: value}])
-
-  console.log(data);
-//   console.log(error);
-}
-
-
-const deleteData = async (value) => {
-    const { data, error } = await client
-    .from('Todos')
-    .delete()
-    .match({ task: value })
-
-    console.log(data);
 }
 
 
 // Supabase
 
 // console.log(Supabase-js);
-
-
 
 // const { createClient } = supabase
 // const _supabase = createClient(
@@ -77,41 +51,6 @@ const deleteData = async (value) => {
 //   console.log('Supabase Instance: ', client)
 
 //   console.log(supabase);
-
-// const getData = async () => {
-//     let { data: items, error } = await client
-//     .from('items')
-//     .select('name')
-
-//     console.log(items);
-  
-// //   console.log(items[0].name);
-// //   console.log(error);
-
-// }
-// const postData = async () => {
-//     const { data, error } = await client
-//     .from('items')
-//     .insert([{ name: 'Item four'}])
-
-//   console.log(data);
-// //   console.log(error);
-// }
-
-// const updateData = async () => {
-//     const { data, error } = await client
-//     .from('items')
-//     .update({ name: 'Fourth item' })
-//     .match({ name: 'Item 4' })
-
-//     console.log(data);
-//     // console.log(error);
-// }
-
-// getData();
-// // postData();
-// updateData();
-// getData();
 
 // console.log(client);
 // Authorization token: sbp_62b85233c90b9dac211d5f27fd239ce5dc93e7fe
