@@ -60,56 +60,6 @@ const deleteData = async (value) => {
 }
 
 
-
-
-// Appwrite
-
-// Init your Web SDK
-// const client = new Appwrite.Client();
-
-// client
-//     .setEndpoint('http://8080-appwrite-integrationfor-9249cbyzfak.ws-eu63.gitpod.io/v1') // Your Appwrite Endpoint
-//     .setProject('630772440a189ac8b9e2') // Your project ID
-// ;
-
-
-// const account = new Appwrite.Account(client);
-
-// // Register User
-// account.create('[USER_ID]', 'me@example.com', 'password', 'Jane Doe')
-//     .then(function (response) {
-//         console.log(response);
-//     }, function (error) {
-//         console.log(error);
-//     });
-
-
-
-// Database
-
-
-
-// const client = new Appwrite.Client();
-// client
-//     .setEndpoint('http://8080-appwrite-integrationfor-9249cbyzfak.ws-eu63.gitpod.io/v1') // Your API Endpoint
-//     .setProject('630772440a189ac8b9e2') // Your project ID
-// ;
-
-// const databases = new Appwrite.Databases(client, '631063276e14901377a7');
-
-// const promise = databases.getDocument('6310633d3e45b63b59dc', '6310a73c827d902f1a9f');
-
-// promise.then(function (response) {
-//     console.log(response); // Success
-// }, function (error) {
-//     console.log(error); // Failure
-// });
-
-
-// console.log(promise)
-
-
-
 // Supabase
 
 // console.log(Supabase-js);
