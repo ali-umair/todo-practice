@@ -4,26 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./main.css">
     <title>TODO</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
 
-    <main>
+    <main class="max-w-xl mx-auto bg-white text-indigo-500 pt-10 pb-8 rounded-xl shadow-lg flex flex-col items-center space-y-16">
 
-        <h1>TODO</h1>
+        <h1 class="text-3xl">TODO</h1>
 
     <!-- <form action="#"> -->
         <div class="form">
             <!-- <label for="addTask">Add new task: </label> -->
-            <input type="text" name="task" id="add-task" placeholder="Add new task" required>
-            <button id="submit">Add Task</button>
+            <input class="bg-indigo-500 px-4 py-3 text-white placeholder:text-white rounded-xl" type="text" name="task" id="add-task" placeholder="Add new task" required>
+            <button class="bg-indigo-500 px-6 py-3 text-white font-semibold rounded-xl hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-indigo-300" id="submit">Add Task</button>
         </div>
     <!-- </form> -->
 
-    <div class="tasks-container">
-        <div class="task">Buy yogurt</div>
+    <div class="max-w-md mx-auto shadow-lg p-4 my-4">
+        <div class="p-3 border-b-2">Buy yogurt and mix it up with some brown sugar</div>
+        <div class="p-3 border-b-2">Buy yogurt and mix it up with some brown sugar</div>
+        <div class="p-3 border-b-2">Buy yogurt and mix it up with some brown sugar</div>
+        <div class="p-3 border-b-2">Buy yogurt and mix it up with some brown sugar</div>
     </div>
 
     </main>
