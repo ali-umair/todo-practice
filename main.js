@@ -1,5 +1,5 @@
 const submitButton = document.querySelector('#submit');             //
-const tasksContainer = document.querySelector('.tasks-container');  //  Selecting elements from the DOM
+const tasksContainer = document.querySelector('#container');  //  Selecting elements from the DOM
 const inputTask = document.querySelector('#add-task');              //
 
 submitButton.addEventListener('click', () => {
@@ -30,4 +30,14 @@ function removeButton(newTask) {                  // Function to generate remove
     removeButton.setAttribute('class', 'btn-remove');      // Adding CSS class for styling          
     removeButton.addEventListener('click', () => newTask.remove())  // Removing task on button click
     newTask.appendChild(removeButton);                     // and then appending the button to new task element
+}
+
+function add() {
+    tasksContainer.innerHTML += `<div class="p-3 border-b-2 flex justify-between w-96">
+    <p class="w-4/5">Buy yogurt.</p>
+    <div class="flex space-x-2 h-8 w-1/5">
+        <button class="bg-green-500 p-2 rounded-xl hover:bg-green-700"><img class="h-4" src="./edit.svg" alt="edit"></button>
+        <button class="bg-red-500 p-2 rounded-xl hover:bg-red-700"><img class="h-4" src="./trash.svg" alt="delete"></button>
+    </div>
+</div>`
 }

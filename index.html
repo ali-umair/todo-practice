@@ -9,25 +9,46 @@
 </head>
 <body>
 
+    <nav class="flex justify-between bg-indigo-700 text-white px-6 py-4">
+        <h1 class="text-xl font-semibold cursor-pointer hover:text-slate-300">User</h1>
+        <ul class="flex space-x-4">
+            <li><button class="bg-white text-indigo-700 px-4 py-1 rounded-xl hover:bg-indigo-300 hover:text-indigo-900">Login</button></li>
+            <li><button class="bg-white text-indigo-700 px-4 py-1 rounded-xl hover:bg-indigo-300 hover:text-indigo-900">Register</button></li>
+        </ul>
+    </nav>
+
     <main class="max-w-xl mx-auto bg-white text-indigo-500 pt-10 pb-8 rounded-xl shadow-lg flex flex-col items-center space-y-16">
-
         <h1 class="text-3xl">TODO</h1>
-
     <!-- <form action="#"> -->
         <div class="form">
             <!-- <label for="addTask">Add new task: </label> -->
-            <input class="bg-indigo-500 px-4 py-3 text-white placeholder:text-white rounded-xl" type="text" name="task" id="add-task" placeholder="Add new task" required>
-            <button class="bg-indigo-500 px-6 py-3 text-white font-semibold rounded-xl hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-indigo-300" id="submit">Add Task</button>
+            <input class="bg-indigo-500 px-4 py-3 text-white placeholder:text-slate-300 rounded-xl" type="text" name="task" id="add-task" placeholder="Add new task" required>
+            <button onclick="add()" class="bg-indigo-500 px-6 py-3 text-white font-semibold rounded-xl hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-indigo-300" id="submit">Add Task</button>
         </div>
     <!-- </form> -->
-
-    <div class="max-w-md mx-auto shadow-lg p-4 my-4">
-        <div class="p-3 border-b-2">Buy yogurt and mix it up with some brown sugar</div>
-        <div class="p-3 border-b-2">Buy yogurt and mix it up with some brown sugar</div>
-        <div class="p-3 border-b-2">Buy yogurt and mix it up with some brown sugar</div>
-        <div class="p-3 border-b-2">Buy yogurt and mix it up with some brown sugar</div>
-    </div>
-
+        <div class="max-w-md mx-auto shadow-xl p-4 my-4" id="container">
+            <div class="p-3 border-b-2 flex justify-between w-96">
+                <p class="w-4/5">Buy yogurt.</p>
+                <div class="flex space-x-2 h-8 w-1/5">
+                    <button class="bg-green-500 p-2 rounded-xl hover:bg-green-700"><img class="h-4" src="./edit.svg" alt="edit"></button>
+                    <button class="bg-red-500 p-2 rounded-xl hover:bg-red-700"><img class="h-4" src="./trash.svg" alt="delete"></button>
+                </div>
+            </div>
+            <div class="p-3 border-b-2 flex justify-between w-96">
+                <p class="w-4/5">Buy yogurt.</p>
+                <div class="flex space-x-2 h-8 w-1/5">
+                    <button class="bg-green-500 p-2 rounded-xl hover:bg-green-700"><img class="h-4" src="./edit.svg" alt="edit"></button>
+                    <button class="bg-red-500 p-2 rounded-xl hover:bg-red-700"><img class="h-4" src="./trash.svg" alt="delete"></button>
+                </div>
+            </div>
+            <div class="p-3 border-b-2 flex justify-between w-96">
+                <p class="w-4/5">Buy yogurt.</p>
+                <div class="flex space-x-2 h-8 w-1/5">
+                    <button class="bg-green-500 p-2 rounded-xl hover:bg-green-700"><img class="h-4" src="./edit.svg" alt="edit"></button>
+                    <button class="bg-red-500 p-2 rounded-xl hover:bg-red-700"><img class="h-4" src="./trash.svg" alt="delete"></button>
+                </div>
+            </div>
+        </div>
     </main>
 
     <script src="./main.js"></script>
