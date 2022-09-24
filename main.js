@@ -1,7 +1,11 @@
-const client = supabase.createClient('https://vhspscomjwkvdtqgpsqd.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZoc3BzY29tandrdmR0cWdwc3FkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjE0NDg3MjUsImV4cCI6MTk3NzAyNDcyNX0.7SbUAet6KDNJCO4ygiUdHj5XHNBLZ0aV7MrX9bmdDkI')
+const _supabase = supabase.createClient('https://vhspscomjwkvdtqgpsqd.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZoc3BzY29tandrdmR0cWdwc3FkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjE0NDg3MjUsImV4cCI6MTk3NzAyNDcyNX0.7SbUAet6KDNJCO4ygiUdHj5XHNBLZ0aV7MrX9bmdDkI')
 const submitButton = document.querySelector('#submit');             //
 const tasksContainer = document.querySelector('#container');  //  Selecting elements from the DOM
 const inputTask = document.querySelector('#add-task');              //
+const user = {
+    "user_id": session.user.id,
+    "tasks": []
+}
 
 
 function add(target) {
@@ -38,16 +42,54 @@ function closeModal(target) {
     target.parentNode.close();
 }
 
+let user;
+async function signin() {
+    const { user, session, error } = await _supabase.auth.signIn({
+        email: 'bagej20428@pelung.com',
+        password: '123456',
+      })
 
-// const postData = async (value) => {
-//     const { data, error } = await client
-//     .from('Todos')
-//     .insert([{ task: value}])
+      console.log(user);
+      console.log(session);
+      console.log(error);
+}
+// signin();
 
-//   console.log(data);
-// //   console.log(error);
-// }
+async function signOut() {
+    const { error } = await _supabase.auth.signOut();
+    console.log(error);
+    console.log(user);
+    localStorage.removeItem('supabase.auth.token'); //Supabase wasn't removing from localStorage so I had to do it manually.
+}
+// signOut();
 
+const session = _supabase.auth.session()
+// console.log(session);
+// console.log(session.user.id);
+
+
+const postData = async () => {
+    const { data, error } = await _supabase
+    .from('Todos')
+    .insert([{ task: 'buy soda', user_id: session.user.id}])
+
+  console.log(data);
+  console.log(error);
+}
+// postData();
+
+const getData = async () => {
+    let { data: items, error } = await _supabase
+    .from('Todos')
+    .select('task')
+    .match({user_id: session.user.id});
+
+    console.log(items);
+  
+//   console.log(items[0].name);
+//   console.log(error);
+}
+// getData();
 
 // const deleteData = async (value) => {
 //     const { data, error } = await client
