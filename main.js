@@ -1,6 +1,8 @@
 const submitButton = document.querySelector('#submit');             //
 const tasksContainer = document.querySelector('#container');  //  Selecting elements from the DOM
-const inputTask = document.querySelector('#add-task');              //
+const inputTask = document.querySelector('#add-task');             //
+const _supabase = supabase;
+console.log(supabase.auth);
 
 
 function add(target) {
@@ -36,3 +38,16 @@ function closeModal(target) {
     // const modal = document.querySelector('#login');
     target.parentNode.close();
 }
+
+
+async function signin() {
+    const { user, session, error } = await _supabase.auth.signIn({
+        email: 'bagej20428@pelung.com',
+        password: '123456789',
+      })
+
+      console.log(user);
+      console.log(session);
+}
+
+signin();
