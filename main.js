@@ -2,23 +2,20 @@ const _supabase = supabase.createClient('https://vhspscomjwkvdtqgpsqd.supabase.c
 const submitButton = document.querySelector('#submit');             //
 const tasksContainer = document.querySelector('#container');  //  Selecting elements from the DOM
 const inputTask = document.querySelector('#add-task');              //
-const user = {
-    "user_id": session.user.id,
+const userInfo = {
+    "id": null,
     "tasks": []
 }
 
 
 function add(target) {
-    if (inputTask.value != "") {
         tasksContainer.innerHTML += `<div id="task" class="p-3 border-b-2 flex justify-between w-96">
-    <p class="w-4/5">${inputTask.value}</p>
+    <p class="w-4/5">${target}</p>
     <div class="flex space-x-2 h-8 w-1/5">
         <button class="bg-green-500 p-2 rounded-xl hover:bg-green-700"><img class="h-4" src="./edit.svg" alt="edit"></button>
         <button onclick="remove(this)" class="bg-red-500 p-2 rounded-xl hover:bg-red-700"><img class="h-4" src="./trash.svg" alt="delete"></button>
     </div>
 </div>`;
-    }
-    else alert("Task field is empty");
 }
 
 function remove (target) {
@@ -52,6 +49,10 @@ async function signin() {
       console.log(user);
       console.log(session);
       console.log(error);
+
+      userInfo.id = user.id;
+
+    //   getData();
 }
 // signin();
 
@@ -66,12 +67,13 @@ async function signOut() {
 const session = _supabase.auth.session()
 // console.log(session);
 // console.log(session.user.id);
+userInfo.id = session.user.id;
 
 
 const postData = async () => {
     const { data, error } = await _supabase
     .from('Todos')
-    .insert([{ task: 'buy soda', user_id: session.user.id}])
+    .insert([{ task: 'clean room', user_id: userInfo.id}])
 
   console.log(data);
   console.log(error);
@@ -82,14 +84,21 @@ const getData = async () => {
     let { data: items, error } = await _supabase
     .from('Todos')
     .select('task')
-    .match({user_id: session.user.id});
+    .match({user_id: userInfo.id});
 
-    console.log(items);
+    // console.log(items);
   
-//   console.log(items[0].name);
-//   console.log(error);
+    //   console.log(items[0].name);
+    //   console.log(error);
+    items.forEach(item => {
+        // console.log(item.task);
+        userInfo.tasks.push(item.task);
+        add(item.task);
+    });
+
 }
-// getData();
+getData();
+// console.log(userInfo);
 
 // const deleteData = async (value) => {
 //     const { data, error } = await client
