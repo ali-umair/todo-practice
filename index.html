@@ -13,8 +13,9 @@
     <nav class="flex justify-between bg-indigo-700 text-white px-6 py-4">
         <h1 class="text-xl font-semibold cursor-pointer hover:text-slate-300">User</h1>
         <ul class="flex space-x-4">
-            <li><button onclick="openModal(this)" class="bg-white text-indigo-700 px-4 py-1 rounded-xl hover:bg-indigo-300 hover:text-indigo-900">Login</button></li>
-            <li><button onclick="openModal(this)" class="bg-white text-indigo-700 px-4 py-1 rounded-xl hover:bg-indigo-300 hover:text-indigo-900">Register</button></li>
+            <li><button onclick="openModal(this)" id="login-btn" class="bg-white text-indigo-700 px-4 py-1 rounded-xl hover:bg-indigo-300 hover:text-indigo-900">Login</button></li>
+            <li><button onclick="openModal(this)" id="register-btn" class="bg-white text-indigo-700 px-4 py-1 rounded-xl hover:bg-indigo-300 hover:text-indigo-900">Register</button></li>
+            <li><button onclick="domManipulationAfterLogout()" id="logout-btn" class="hidden bg-white text-indigo-700 px-4 py-1 rounded-xl hover:bg-indigo-300 hover:text-indigo-900">Logout</button></li>
         </ul>
     </nav>
     <main class="max-w-xl mx-auto bg-white text-indigo-500 pt-10 pb-8 rounded-xl shadow-lg flex flex-col items-center space-y-16">
@@ -43,10 +44,12 @@
         <button id="close" onclick="closeModal(this)" class="float-right"><img class="h-5" src="./close.png" alt="close"></button>
         <h1 class="text-3xl my-10">Register</h1>
         <div class="w-96 p-8 flex flex-col space-y-4">
+            <input id="first-name" class="bg-indigo-500 px-4 py-3 text-white placeholder:text-slate-300 rounded-xl focus:bg-indigo-700" type="text" name="first-name" placeholder="First Name" required>
+            <input id="last-name" class="bg-indigo-500 px-4 py-3 text-white placeholder:text-slate-300 rounded-xl focus:bg-indigo-700" type="text" name="last-name" placeholder="Last Name" required>
             <input id="email" class="bg-indigo-500 px-4 py-3 text-white placeholder:text-slate-300 rounded-xl focus:bg-indigo-700" type="email" name="email" placeholder="Your email" required>
             <input id="password" class="bg-indigo-500 px-4 py-3 text-white placeholder:text-slate-300 rounded-xl focus:bg-indigo-700" type="password" name="password" placeholder="Your password" required>
-            <input id="password-confirm" class="bg-indigo-500 px-4 py-3 text-white placeholder:text-slate-300 rounded-xl focus:bg-indigo-700" type="password" name="password-confirm" placeholder="Confirm password" required>
-            <button class="bg-green-500 px-6 py-3 text-white font-semibold rounded-full hover:bg-green-700 focus:outline-none focus:ring focus:ring-green-300">Register</button>
+            <!-- <input id="password-confirm" class="bg-indigo-500 px-4 py-3 text-white placeholder:text-slate-300 rounded-xl focus:bg-indigo-700" type="password" name="password-confirm" placeholder="Confirm password" required> -->
+            <button onclick="registerUser(this)" class="bg-green-500 px-6 py-3 text-white font-semibold rounded-full hover:bg-green-700 focus:outline-none focus:ring focus:ring-green-300">Register</button>
             </div>
     </dialog>
 

@@ -4,7 +4,12 @@ const tasksContainer = document.querySelector('#container');  //  Selecting elem
 const inputTask = document.querySelector('#add-task');              //
 const userInfo = {
     "id": null,
-    "tasks": []
+    "name": "",
+    "tasks": [
+        "buy milk",
+        "buy soda",
+        "clean room"
+    ]
 }
 
 
@@ -47,14 +52,14 @@ function login(target) {
     const loginInputs = Array.from(document.querySelectorAll('#login input'));
     const email = loginInputs[0].value;
     const password = loginInputs[1].value;
-    signin(email, password);
+    supabaseLogin(email, password);
     target.parentNode.parentNode.close();
     
 
     // console.log(email, password);
 }
 
-async function signin(email, pswd) {
+async function supabaseLogin(email, pswd) {
     const { user, session, error } = await _supabase.auth.signIn({
         email: email,
         password: pswd,
@@ -65,6 +70,8 @@ async function signin(email, pswd) {
       console.log(error);
 
       userInfo.id = user.id;
+      userInfo.name = user.user_metadata.last_name;
+      domManipulationAfterLogin();
 
     //   getData();
 }
@@ -78,10 +85,86 @@ async function signOut() {
 }
 // signOut();
 
-const session = _supabase.auth.session()
+function registerUser(target) {
+    const registerInputs = Array.from(document.querySelectorAll('#register input'));
+    const firstName = registerInputs[0].value;
+    const lastName = registerInputs[1].value;
+    const email = registerInputs[2].value;
+    const password = registerInputs[3].value;
+    supabaseRegister(firstName, lastName, email, password);
+    target.parentNode.parentNode.close();
+}
+
+async function supabaseRegister(firstName, lastName, email, pswd) {
+    const { user, session, error } = await _supabase.auth.signUp({
+        email: email,
+        password: pswd,
+      },
+      {
+        data: {
+            first_name: firstName,
+            last_name: lastName
+        }
+      }
+    )
+    console.log(user);
+}
+
+
+
+
+
+// const session = _supabase.auth.session()
 // console.log(session);
 // console.log(session.user.id);
 // userInfo.id = session.user.id;
+
+function domManipulationAfterLogin() {
+    const logoutBtn = document.querySelector('#logout-btn');
+    const loginBtn = document.querySelector('#login-btn');
+    const registerBtn = document.querySelector('#register-btn');
+    const navh1 = document.querySelector('nav h1');
+
+    logoutBtn.classList.toggle('hidden');
+    loginBtn.classList.toggle('hidden');
+    registerBtn.classList.toggle('hidden');
+
+    navh1.textContent = userInfo.name;
+
+    userInfo.tasks.forEach(task => {
+        tasksContainer.innerHTML += `<div id="task" class="p-3 border-b-2 flex justify-between w-96">
+    <p class="w-4/5">${task}</p>
+    <div class="flex space-x-2 h-8 w-1/5">
+        <button class="bg-green-500 p-2 rounded-xl hover:bg-green-700"><img class="h-4" src="./edit.svg" alt="edit"></button>
+        <button onclick="remove(this)" class="bg-red-500 p-2 rounded-xl hover:bg-red-700"><img class="h-4" src="./trash.svg" alt="delete"></button>
+    </div>
+</div>`;
+    })
+
+    // console.log(logoutBtn.classList.toggle('hidden'));
+    // console.log(loginBtn.classList.toggle('hidden'));
+    // console.log(registerBtn.classList.toggle('hidden'));
+}
+
+function domManipulationAfterLogout() {
+    const logoutBtn = document.querySelector('#logout-btn');
+    const loginBtn = document.querySelector('#login-btn');
+    const registerBtn = document.querySelector('#register-btn');
+    const navh1 = document.querySelector('nav h1');
+
+    logoutBtn.classList.toggle('hidden');
+    loginBtn.classList.toggle('hidden');
+    registerBtn.classList.toggle('hidden');
+
+    navh1.textContent = "User";
+
+    tasksContainer.innerHTML = "";
+
+    signOut();
+
+    // console.log(navh1);
+}
+
 
 
 
