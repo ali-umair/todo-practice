@@ -13,8 +13,8 @@
     <nav class="flex justify-between bg-indigo-700 text-white px-6 py-4">
         <h1 class="text-xl font-semibold cursor-pointer hover:text-slate-300">User</h1>
         <ul class="flex space-x-4">
-            <li><button onclick="login()" class="bg-white text-indigo-700 px-4 py-1 rounded-xl hover:bg-indigo-300 hover:text-indigo-900">Login</button></li>
-            <li><button onclick="register()" class="bg-white text-indigo-700 px-4 py-1 rounded-xl hover:bg-indigo-300 hover:text-indigo-900">Register</button></li>
+            <li><button onclick="openModal(this)" class="bg-white text-indigo-700 px-4 py-1 rounded-xl hover:bg-indigo-300 hover:text-indigo-900">Login</button></li>
+            <li><button onclick="openModal(this)" class="bg-white text-indigo-700 px-4 py-1 rounded-xl hover:bg-indigo-300 hover:text-indigo-900">Register</button></li>
         </ul>
     </nav>
     <main class="max-w-xl mx-auto bg-white text-indigo-500 pt-10 pb-8 rounded-xl shadow-lg flex flex-col items-center space-y-16">
@@ -35,7 +35,7 @@
         <div class="w-96 p-8 flex flex-col space-y-4">
             <input id="email" class="bg-indigo-500 px-4 py-3 text-white placeholder:text-slate-300 rounded-xl focus:bg-indigo-700" type="email" name="email" placeholder="Your email" required>
             <input id="password" class="bg-indigo-500 px-4 py-3 text-white placeholder:text-slate-300 rounded-xl focus:bg-indigo-700" type="password" name="password" placeholder="Your password" required>
-            <button class="bg-green-500 px-6 py-3 text-white font-semibold rounded-full hover:bg-green-700 focus:outline-none focus:ring focus:ring-green-300">Login</button>
+            <button onclick="login(this)" class="bg-green-500 px-6 py-3 text-white font-semibold rounded-full hover:bg-green-700 focus:outline-none focus:ring focus:ring-green-300">Login</button>
             </div>
     </dialog>
 

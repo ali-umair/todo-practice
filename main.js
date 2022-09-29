@@ -9,13 +9,16 @@ const userInfo = {
 
 
 function add(target) {
+    if (inputTask.value != "") {
         tasksContainer.innerHTML += `<div id="task" class="p-3 border-b-2 flex justify-between w-96">
-    <p class="w-4/5">${target}</p>
+    <p class="w-4/5">${inputTask.value}</p>
     <div class="flex space-x-2 h-8 w-1/5">
         <button class="bg-green-500 p-2 rounded-xl hover:bg-green-700"><img class="h-4" src="./edit.svg" alt="edit"></button>
         <button onclick="remove(this)" class="bg-red-500 p-2 rounded-xl hover:bg-red-700"><img class="h-4" src="./trash.svg" alt="delete"></button>
     </div>
 </div>`;
+    }
+    else alert("Task field is empty");
 }
 
 function remove (target) {
@@ -23,15 +26,16 @@ function remove (target) {
     target.parentNode.parentNode.remove();
 }
 
-
-function login() {
-    const modal = document.querySelector('#login');
-    modal.showModal();
-}
-
-function register() {
-    const modal = document.querySelector('#register');
-    modal.showModal();
+function openModal(target) {
+    if(target.textContent == 'Login') {
+        const modal = document.querySelector('#login');
+        modal.showModal();
+    }
+    else if(target.textContent == 'Register') {
+        const modal = document.querySelector('#register');
+        modal.showModal();
+    }
+    // console.log(target.textContent);
 }
 
 function closeModal(target) {
@@ -39,11 +43,21 @@ function closeModal(target) {
     target.parentNode.close();
 }
 
-let user;
-async function signin() {
+function login(target) {
+    const loginInputs = Array.from(document.querySelectorAll('#login input'));
+    const email = loginInputs[0].value;
+    const password = loginInputs[1].value;
+    signin(email, password);
+    target.parentNode.parentNode.close();
+    
+
+    // console.log(email, password);
+}
+
+async function signin(email, pswd) {
     const { user, session, error } = await _supabase.auth.signIn({
-        email: 'bagej20428@pelung.com',
-        password: '123456',
+        email: email,
+        password: pswd,
       })
 
       console.log(user);
@@ -59,7 +73,7 @@ async function signin() {
 async function signOut() {
     const { error } = await _supabase.auth.signOut();
     console.log(error);
-    console.log(user);
+    // console.log(user);
     localStorage.removeItem('supabase.auth.token'); //Supabase wasn't removing from localStorage so I had to do it manually.
 }
 // signOut();
@@ -67,7 +81,25 @@ async function signOut() {
 const session = _supabase.auth.session()
 // console.log(session);
 // console.log(session.user.id);
-userInfo.id = session.user.id;
+// userInfo.id = session.user.id;
+
+
+
+
+
+
+
+
+// Supabase Data Workflow
+
+
+
+
+
+
+
+
+
 
 
 const postData = async () => {
@@ -93,11 +125,11 @@ const getData = async () => {
     items.forEach(item => {
         // console.log(item.task);
         userInfo.tasks.push(item.task);
-        add(item.task);
+        // add(item.task);
     });
 
 }
-getData();
+// getData();
 // console.log(userInfo);
 
 // const deleteData = async (value) => {
